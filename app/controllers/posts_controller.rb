@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @posts = Post.all
   end
@@ -9,12 +11,13 @@ class PostsController < ApplicationController
   
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
     @post.save
     redirect_to :posts
   end
- end
 
-private
+  private
   def post_params
     params.require(:post).permit(:post_name, :url, :comment)
   end
+end

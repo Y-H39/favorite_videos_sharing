@@ -1,0 +1,24 @@
+</div>
+  <h3>詳細</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>タイトル</th>
+        <th>URL</th>
+        <th>コメント</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <%= form_with model: @post do |f| %>
+        <tr>
+          <td><%= @post.id %></td>
+          <td><%= @post.post_name %></td>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @post.url.last(31)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+          <td><%= @post.comment %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<div>

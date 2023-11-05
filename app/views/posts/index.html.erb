@@ -28,6 +28,11 @@
         <td><%= link_to post.post_name, post_path(post.id) %></td>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=post.url.last(31)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
         <td><%= post.comment %></td>
+        <% if current_user.favorited?(post.id) %>
+          <td><%= link_to 'いいねを外す', post_favorites_path(post), data: { turbo_method: :delete } %></td>
+        <% else %>
+          <td><%= link_to 'いいね', post_favorites_path(post), data: { turbo_method: :post } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
